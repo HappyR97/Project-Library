@@ -1,0 +1,94 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #555;
+}
+
+/* Header Section */
+
+header {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100vw;
+  height: 8rem;
+  background-color: lightblue;
+  padding: 0 1.2rem 0 1.2rem;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 6.4rem;
+}
+
+header img {
+  height: 7.4rem;
+  width: 7.4rem;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  justify-self: start;
+}
+
+header > div > p {
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+header > p {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.buttons {
+  display: flex;
+  gap: 2.4rem;
+}
+
+.buttons button {
+  padding: 1.4rem 0 1.4rem 0;
+  width: 12.8rem;
+  border: none;
+  border-radius: 3px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.buttons button:first-child {
+  background-color: #4caf50;
+}
+.buttons button:last-child {
+  background-color: #f44336;
+}
+
+/* Titles Section */
+
+.book-details {
+  width: 90rem;
+  height: 4.8rem;
+  margin: auto;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 3fr 2fr 1fr 1fr 1fr;
+  gap: 2.4rem;
+  background-color: lightseagreen;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+}
