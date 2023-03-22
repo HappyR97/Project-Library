@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
@@ -12,10 +14,10 @@
     />
 
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
+    <script src="script.js " defer></script>
     <title>Project: Library</title>
   </head>
-  <body>
+  <body class="blur">
     <header>
       <div class="logo-section">
         <img src="./logo.png" alt="Library logo" />
@@ -25,16 +27,61 @@
       <p>BOOKS NOT READ: <span>0</span></p>
       <p>TOTAL BOOKS: <span>0</span></p>
       <div class="buttons">
-        <button>ADD NEW</button>
+        <button class="book-button--add">ADD NEW</button>
         <button>DELETE ALL</button>
       </div>
     </header>
-    <div class="book-details">
-      <p>TITLE</p>
-      <p>AUTHOR</p>
-      <p>PAGES</p>
-      <p>STATUS</p>
-      <p>REMOVE</p>
+
+    <table>
+      <tr class="book-details">
+        <th width="350">TITLE</th>
+        <th width="350">AUTHOR</th>
+        <th>PAGES</th>
+        <th>READ</th>
+        <th>REMOVE</th>
+      </tr>
+      <tr class="book">
+        <td>The Lord of The Rings</td>
+        <td>George R R Martin</td>
+        <td>320</td>
+        <td><ion-icon class="check" name="checkmark-outline"></ion-icon></td>
+        <td><ion-icon class="trash" name="trash"></ion-icon></td>
+      </tr>
+    </table>
+    <div class="book-modal">
+      <div class="container-close--button">
+        <button class="book-button--close">&times;</button>
+      </div>
+
+      <form>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" />
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" />
+
+        <label for="pages">Pages:</label>
+        <input type="number" id="pages" name="pages" min="1" step="1" />
+
+        <label for="read">Did you read it?</label>
+        <select name="read" id="read">
+          <option value=""></option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </form>
+      <div class="container-add--button">
+        <button class="submit">Done</button>
+      </div>
     </div>
+    <div class="overlay"></div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>

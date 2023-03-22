@@ -51,6 +51,10 @@ header > p {
   font-weight: 500;
 }
 
+.blur {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
 .buttons {
   display: flex;
   gap: 2.4rem;
@@ -75,20 +79,138 @@ header > p {
   background-color: #f44336;
 }
 
+.buttons button:hover {
+  filter: brightness(110%);
+}
+
 /* Titles Section */
 
-.book-details {
-  width: 90rem;
-  height: 4.8rem;
+table {
+  width: 100rem;
   margin: auto;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  grid-template-columns: 3fr 2fr 1fr 1fr 1fr;
-  gap: 2.4rem;
+  font-size: 1.6rem;
+}
+
+th {
+  color: #fff;
+  text-align: left;
+  padding-left: 1.2rem;
+}
+
+tr {
+  height: 4.8rem;
+}
+
+tr td:last-child,
+tr td:nth-child(3),
+tr td:nth-child(4),
+tr th:last-child,
+tr th:nth-child(3),
+tr th:nth-child(4) {
+  padding-left: 0;
+  text-align: center;
+}
+
+.book-details {
   background-color: lightseagreen;
+}
+
+td {
+  color: #555;
+  padding-left: 1.2rem;
+}
+
+.trash {
+  color: #f44336;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.check {
+  color: #4caf50;
+  font-size: 2rem;
+  --ionicon-stroke-width: 50px;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.book-modal {
+  display: none;
+  position: fixed;
+  background-color: white;
+  z-index: 1000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20%;
+  margin: 0 auto;
+  font-size: 1.6rem;
+  padding: 1.6rem 1.6rem 3.2rem 1.6rem;
+  border-radius: 5px;
+  color: black;
+  box-shadow: 0 0px 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+.active {
+  display: block;
+}
+
+.container-close--button {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 3.2rem;
+}
+
+.container-add--button {
+  margin-top: 1.6rem;
+  display: flex;
+  justify-content: center;
+}
+
+.container-add--button button {
+  padding: 1.4rem 0 1.4rem 0;
+  background-color: #4caf50;
+  margin-top: 2.4rem;
+  width: 9.6rem;
+  border: none;
+  border-radius: 3px;
   font-size: 1.4rem;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 0.25px;
   color: #fff;
+  cursor: pointer;
+}
+
+.container-add--button button:hover {
+  filter: brightness(110%);
+}
+
+.book-button--close {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 2.4rem;
+}
+
+form {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 0.8fr 1.2fr;
+  row-gap: 2.4rem;
+}
+
+input,
+select {
+  border: none;
+  box-shadow: 0 0 1px black;
+  height: 3.2rem;
+  padding: 0.4rem 0.4rem;
 }
