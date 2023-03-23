@@ -158,9 +158,8 @@ td {
   color: black;
   box-shadow: 0 0px 10px 5px rgba(0, 0, 0, 0.2);
 }
-
 .active {
-  display: block;
+  display: block !important;
 }
 
 .container-close--button {
@@ -213,4 +212,77 @@ select {
   box-shadow: 0 0 1px black;
   height: 3.2rem;
   padding: 0.4rem 0.4rem;
+}
+
+.delete-modal {
+  display: none;
+  position: fixed;
+  background-color: white;
+  z-index: 1000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  margin: 0 auto;
+  font-size: 1.6rem;
+  border-radius: 5px;
+  color: black;
+  box-shadow: 0 0px 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+.delete-modal div:first-child {
+  display: flex;
+  justify-content: end;
+  margin-right: 1.4rem;
+  margin-top: 1.4rem;
+}
+
+.delete-modal > div > button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 2.4rem;
+}
+
+.delete-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6.4rem;
+  margin-top: 2.4rem;
+}
+
+.container--delete-modal {
+  padding: 1.6rem 3.2rem 2.4rem 3.2rem;
+}
+
+.delete-modal p {
+  text-align: center;
+  line-height: 1.5;
+  font-size: 1.8rem;
+}
+
+.delete-buttons button {
+  padding: 1.2rem 0 1.2rem 0;
+  width: 8rem;
+  border: none;
+  border-radius: 3px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.button-no {
+  background-color: #4caf50;
+}
+
+.button-yes {
+  background-color: #f44336;
+}
+
+.button-no:hover,
+.button-yes:hover {
+  filter: brightness(110%);
 }

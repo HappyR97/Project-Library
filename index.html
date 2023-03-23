@@ -28,7 +28,7 @@
       <p>TOTAL BOOKS: <span>0</span></p>
       <div class="buttons">
         <button class="book-button--add">ADD NEW</button>
-        <button>DELETE ALL</button>
+        <button class="book-button--delete">DELETE ALL</button>
       </div>
     </header>
 
@@ -72,6 +72,21 @@
       </form>
       <div class="container-add--button">
         <button class="submit">Done</button>
+      </div>
+    </div>
+    <div class="delete-modal">
+      <div>
+        <button class="delete-close-button">&times;</button>
+      </div>
+      <div class="container--delete-modal">
+        <p class="delete-sentence">
+          Are you sure you want to delete <strong>ALL</strong> books? This
+          action is <strong>IRREVERSIBLE</strong>.
+        </p>
+        <div class="delete-buttons">
+          <button class="button-yes">YES</button>
+          <button class="button-no">NO</button>
+        </div>
       </div>
     </div>
     <div class="overlay"></div>
