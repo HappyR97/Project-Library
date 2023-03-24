@@ -32,7 +32,7 @@
       </div>
     </header>
 
-    <table>
+    <table class="table">
       <tr class="book-details">
         <th width="350">TITLE</th>
         <th width="350">AUTHOR</th>
@@ -55,19 +55,25 @@
 
       <form>
         <label for="title">Title:</label>
-        <input type="text" id="title" name="title" />
+        <input class="book-title" type="text" id="title" name="title" />
 
         <label for="author">Author:</label>
-        <input type="text" id="author" name="author" />
+        <input class="book-author" type="text" id="author" name="author" />
 
         <label for="pages">Pages:</label>
-        <input type="number" id="pages" name="pages" min="1" step="1" />
+        <input
+          class="book-pages"
+          type="number"
+          id="pages"
+          name="pages"
+          min="1"
+          step="1"
+        />
 
         <label for="read">Did you read it?</label>
-        <select name="read" id="read">
-          <option value=""></option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
+        <select class="book-read" name="read" id="read">
+          <option value="true">Yes</option>
+          <option value="false">No</option>
         </select>
       </form>
       <div class="container-add--button">
