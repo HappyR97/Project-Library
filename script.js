@@ -15,8 +15,8 @@ const bookTitle = document.querySelector(".book-title");
 const bookAuthor = document.querySelector(".book-author");
 const bookPages = document.querySelector(".book-pages");
 const bookRead = document.querySelector(".book-read");
-// Table Variables
 
+// Table Variables
 let tr;
 let tdTitle;
 let tdAuthor;
@@ -25,30 +25,6 @@ let tdRead;
 let tdRemove;
 
 // ***** MODALS ***** //
-
-// Events to open/close new book modal
-addBtn.addEventListener("click", function () {
-  openBookModal();
-});
-
-bookCloseBtn.addEventListener("click", function () {
-  closeBookModal();
-});
-
-overlay.addEventListener("click", function () {
-  closeBookModal();
-  closeDeleteModal();
-});
-
-// Events to open/close delete all modal
-
-deleteAllBtn.addEventListener("click", function () {
-  openDeleteModal();
-});
-
-deleteCloseBtn.addEventListener("click", function () {
-  closeDeleteModal();
-});
 
 // Function to open and close book modal
 function openBookModal() {
@@ -75,6 +51,30 @@ function closeDeleteModal() {
   deleteModal.classList.remove("active");
   overlay.classList.remove("active");
 }
+
+// Events to open/close new book modal
+addBtn.addEventListener("click", function () {
+  openBookModal();
+});
+
+bookCloseBtn.addEventListener("click", function () {
+  closeBookModal();
+});
+
+overlay.addEventListener("click", function () {
+  closeBookModal();
+  closeDeleteModal();
+});
+
+// Events to open/close delete all modal
+
+deleteAllBtn.addEventListener("click", function () {
+  openDeleteModal();
+});
+
+deleteCloseBtn.addEventListener("click", function () {
+  closeDeleteModal();
+});
 
 //////////////////////////////////////////////
 
@@ -155,12 +155,15 @@ function displayBooks() {
     // If/Else statement that checks if book is read or not and inserts corresponding icon
     if (myLibrary[i].read === "yes") {
       // If book is read, insert Checkmark icon
+      tdRead.innerHTML = ""; // Clears the "Read" cell first to avoid duplication of icon
       let check = document.createElement("ion-icon");
       check.setAttribute("name", "checkmark-circle");
       check.setAttribute("class", "check");
+
       tdRead.appendChild(check);
       // If book is NOT read, insert Cross icon
-    } else if (myLibrary[i].read === "no") {
+    } else {
+      tdRead.innerHTML = ""; // Clears the "Read" cell first to avoid duplication of icon
       let cross = document.createElement("ion-icon");
       cross.setAttribute("name", "close-circle");
       cross.setAttribute("class", "cross");
