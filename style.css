@@ -128,8 +128,14 @@ td {
 
 .check {
   color: #4caf50;
-  font-size: 2rem;
-  --ionicon-stroke-width: 50px;
+  cursor: pointer;
+  font-size: 3rem;
+}
+
+.cross {
+  color: #f44336;
+  cursor: pointer;
+  font-size: 3rem;
 }
 
 .overlay {

@@ -15,8 +15,6 @@ const bookTitle = document.querySelector(".book-title");
 const bookAuthor = document.querySelector(".book-author");
 const bookPages = document.querySelector(".book-pages");
 const bookRead = document.querySelector(".book-read");
-const checkmark = document.querySelector(".check");
-
 // Table Variables
 
 let tr;
@@ -102,24 +100,26 @@ function addBookToLibrary() {
   myLibrary.push(book);
 }
 
-// ********** TEST ********** //
+// ********** TEST (MANUALLY INSERTED BOOKS) ********** //
 
-const book1 = new Book("Atomic Habits", "James Clear", 189, true);
-const book2 = new Book("48 Laws of Power", "Robert Green", 245, false);
-const book3 = new Book(
-  "The Subtle Art of Not Giving a Fuck",
-  "Mark Manson",
-  574,
-  true
-);
-const book4 = new Book("The Laws of Human Nature", "Robert Greene", 564, false);
+// const book1 = new Book("Atomic Habits", "James Clear", 189, true);
+// const book2 = new Book("48 Laws of Power", "Robert Green", 245, false);
+// const book3 = new Book(
+//   "The Subtle Art of Not Giving a Fuck",
+//   "Mark Manson",
+//   574,
+//   true
+// );
+// const book4 = new Book("The Laws of Human Nature", "Robert Greene", 564, false);
 
-myLibrary.push(book1);
-myLibrary.push(book2);
-myLibrary.push(book3);
-myLibrary.push(book4);
+// myLibrary.push(book1);
+// myLibrary.push(book2);
+// myLibrary.push(book3);
+// myLibrary.push(book4);
 
-console.log(myLibrary);
+// console.log(myLibrary);
+
+// ******************** //
 
 // Function that adds a new row to the library table
 function addRow() {
@@ -137,23 +137,41 @@ function addRow() {
   tr.appendChild(tdRemove);
 
   table.appendChild(tr);
+
+  // Insert trash icon
+  const icon = document.createElement("ion-icon");
+  icon.setAttribute("name", "trash");
+  icon.setAttribute("class", "trash");
+  tdRemove.appendChild(icon);
 }
 
+// Function that displays books on the table
 function displayBooks() {
   for (let i = 0; i <= myLibrary.length - 1; i++) {
-    addRow();
     tdTitle.textContent = myLibrary[i].title;
     tdAuthor.textContent = myLibrary[i].author;
     tdPages.textContent = myLibrary[i].pages;
     tdTitle.textContent = myLibrary[i].title;
+    // If/Else statement that checks if book is read or not and inserts corresponding icon
+    if (myLibrary[i].read === "yes") {
+      // If book is read, insert Checkmark icon
+      let check = document.createElement("ion-icon");
+      check.setAttribute("name", "checkmark-circle");
+      check.setAttribute("class", "check");
+      tdRead.appendChild(check);
+      // If book is NOT read, insert Cross icon
+    } else if (myLibrary[i].read === "no") {
+      let cross = document.createElement("ion-icon");
+      cross.setAttribute("name", "close-circle");
+      cross.setAttribute("class", "cross");
+      tdRead.appendChild(cross);
+    }
   }
 }
 
-displayBooks();
-
-// ******************** //
-
 doneBtn.addEventListener("click", function () {
   addBookToLibrary();
+  addRow();
+  displayBooks();
   closeBookModal();
 });
