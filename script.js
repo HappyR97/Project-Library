@@ -26,8 +26,18 @@ let tdPages;
 let tdRead;
 let tdRemove;
 
-// variable that holds all created table rows and data
+// variable that holds table rows
 const temp = document.getElementsByClassName("temp");
+
+// Book counter variables
+
+const readBooksEl = document.querySelector(".books-read");
+const unreadBooksEl = document.querySelector(".books-unread");
+const allBooksEl = document.querySelector(".books-all");
+
+let readBooks = 0;
+let unreadBooks = 0;
+let allBooks = 0;
 
 // ***** MODALS ***** //
 
@@ -65,7 +75,17 @@ function deleteAll() {
       temp[i].remove();
     }
   }
+
+  // Reset everything
   myLibrary = [];
+  readBooks = 0;
+  readBooksEl.textContent = "0";
+
+  unreadBooks = 0;
+  unreadBooksEl.textContent = "0";
+
+  allBooks = 0;
+  allBooksEl.textContent = "0";
 }
 
 // Events to open/close new book modal
@@ -127,6 +147,17 @@ function addBookToLibrary() {
     bookRead.value
   );
   myLibrary.push(book);
+
+  // Updating book counters
+  allBooks += 1;
+  allBooksEl.textContent = allBooks;
+  if (bookRead.value === "yes") {
+    readBooks += 1;
+    readBooksEl.textContent = readBooks;
+  } else {
+    unreadBooks += 1;
+    unreadBooksEl.textContent = unreadBooks;
+  }
 }
 
 // Function that adds a new row to the library table
@@ -139,11 +170,6 @@ function addRow() {
   tdRemove = document.createElement("td");
 
   tr.classList.add("temp");
-  // tdTitle.classList.add("temp");
-  // tdAuthor.classList.add("temp");
-  // tdPages.classList.add("temp");
-  // tdRead.classList.add("temp");
-  // tdRemove.classList.add("temp");
 
   tr.appendChild(tdTitle);
   tr.appendChild(tdAuthor);
@@ -176,6 +202,7 @@ function displayBooks() {
       check.setAttribute("class", "check");
 
       tdRead.appendChild(check);
+
       // If book is NOT read, insert Cross icon
     } else {
       tdRead.innerHTML = ""; // Clears the "Read" cell first to avoid duplication of icon
