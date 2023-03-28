@@ -9,6 +9,8 @@ const bookCloseBtn = document.querySelector(".book-button--close");
 const deleteCloseBtn = document.querySelector(".delete-close-button");
 const doneBtn = document.querySelector(".submit");
 const table = document.querySelector(".table");
+const deleteBtnNo = document.querySelector(".button-no");
+const deleteBtnYes = document.querySelector(".button-yes");
 
 // Book Variables
 const bookTitle = document.querySelector(".book-title");
@@ -23,6 +25,9 @@ let tdAuthor;
 let tdPages;
 let tdRead;
 let tdRemove;
+
+// variable that holds all created table rows and data
+const temp = document.getElementsByClassName("temp");
 
 // ***** MODALS ***** //
 
@@ -52,6 +57,17 @@ function closeDeleteModal() {
   overlay.classList.remove("active");
 }
 
+// Function that deletes all books
+
+function deleteAll() {
+  for (let i = 0; i < temp.length; i++) {
+    if (temp[i]) {
+      temp[i].remove();
+    }
+  }
+  myLibrary = [];
+}
+
 // Events to open/close new book modal
 addBtn.addEventListener("click", function () {
   openBookModal();
@@ -66,7 +82,7 @@ overlay.addEventListener("click", function () {
   closeDeleteModal();
 });
 
-// Events to open/close delete all modal
+// Events to open/close "delete all" modal
 
 deleteAllBtn.addEventListener("click", function () {
   openDeleteModal();
@@ -76,7 +92,20 @@ deleteCloseBtn.addEventListener("click", function () {
   closeDeleteModal();
 });
 
-//////////////////////////////////////////////
+deleteBtnNo.addEventListener("click", function () {
+  closeDeleteModal();
+});
+
+// Event that deletes all books
+
+deleteBtnYes.addEventListener("click", function () {
+  for (let i = 0; i < 20; i++) {
+    deleteAll();
+  }
+  closeDeleteModal();
+});
+
+// ******************************************************** //
 
 // Library that will store all books objects
 let myLibrary = [];
@@ -100,27 +129,6 @@ function addBookToLibrary() {
   myLibrary.push(book);
 }
 
-// ********** TEST (MANUALLY INSERTED BOOKS) ********** //
-
-// const book1 = new Book("Atomic Habits", "James Clear", 189, true);
-// const book2 = new Book("48 Laws of Power", "Robert Green", 245, false);
-// const book3 = new Book(
-//   "The Subtle Art of Not Giving a Fuck",
-//   "Mark Manson",
-//   574,
-//   true
-// );
-// const book4 = new Book("The Laws of Human Nature", "Robert Greene", 564, false);
-
-// myLibrary.push(book1);
-// myLibrary.push(book2);
-// myLibrary.push(book3);
-// myLibrary.push(book4);
-
-// console.log(myLibrary);
-
-// ******************** //
-
 // Function that adds a new row to the library table
 function addRow() {
   tr = document.createElement("tr");
@@ -129,6 +137,13 @@ function addRow() {
   tdPages = document.createElement("td");
   tdRead = document.createElement("td");
   tdRemove = document.createElement("td");
+
+  tr.classList.add("temp");
+  // tdTitle.classList.add("temp");
+  // tdAuthor.classList.add("temp");
+  // tdPages.classList.add("temp");
+  // tdRead.classList.add("temp");
+  // tdRemove.classList.add("temp");
 
   tr.appendChild(tdTitle);
   tr.appendChild(tdAuthor);
