@@ -25,12 +25,13 @@ let tdAuthor;
 let tdPages;
 let tdRead;
 let tdRemove;
+let icon;
+let trashButtons;
 
 // variable that holds table rows
 const temp = document.getElementsByClassName("temp");
 
 // Book counter variables
-
 const readBooksEl = document.querySelector(".books-read");
 const unreadBooksEl = document.querySelector(".books-unread");
 const allBooksEl = document.querySelector(".books-all");
@@ -131,12 +132,27 @@ deleteBtnYes.addEventListener("click", function () {
 let myLibrary = [];
 
 // Book constructor
-const Book = function (title, author, pages, read) {
+const Book = function (title, author, pages, read, id) {
+  this.id = generateUniqueId();
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
 };
+
+// Function that generates IDs
+function generateUniqueId() {
+  let id = "";
+  const chars = "abcdef0123456789";
+  for (let i = 0; i < 32; i++) {
+    const randIndex = Math.floor(Math.random() * chars.length);
+    id += chars[randIndex];
+    if (i === 7 || i === 11 || i === 15 || i === 19) {
+      id += "-";
+    }
+  }
+  return id;
+}
 
 // Function that adds book to the library array
 function addBookToLibrary() {
@@ -147,17 +163,6 @@ function addBookToLibrary() {
     bookRead.value
   );
   myLibrary.push(book);
-
-  // Updating book counters
-  allBooks += 1;
-  allBooksEl.textContent = allBooks;
-  if (bookRead.value === "yes") {
-    readBooks += 1;
-    readBooksEl.textContent = readBooks;
-  } else {
-    unreadBooks += 1;
-    unreadBooksEl.textContent = unreadBooks;
-  }
 }
 
 // Function that adds a new row to the library table
@@ -180,15 +185,25 @@ function addRow() {
   table.appendChild(tr);
 
   // Insert trash icon
-  const icon = document.createElement("ion-icon");
+  icon = document.createElement("ion-icon");
   icon.setAttribute("name", "trash");
   icon.setAttribute("class", "trash");
   tdRemove.appendChild(icon);
+
+  trashButtons = document.querySelectorAll('[name="trash"]');
+
+  // Adds an event listener to each trash button.
+  addTrashEvents();
 }
 
 // Function that displays books on the table
 function displayBooks() {
   for (let i = 0; i <= myLibrary.length - 1; i++) {
+    // Giving the same id to the table row and the trash icon as the book to link between the 3
+    tr.setAttribute("data-id", `${myLibrary[i].id}`);
+    icon.setAttribute("data-id", `${myLibrary[i].id}`);
+
+    // Displaying book details on the table (title, author, pages)
     tdTitle.textContent = myLibrary[i].title;
     tdAuthor.textContent = myLibrary[i].author;
     tdPages.textContent = myLibrary[i].pages;
@@ -213,6 +228,28 @@ function displayBooks() {
     }
   }
 }
+
+// Function that adds event listeners to the trash buttons
+function addTrashEvents() {
+  for (let i = 0; i < trashButtons.length; i++) {
+    trashButtons[i].addEventListener("click", function () {
+      const bookId = this.closest("tr").getAttribute("data-id");
+      deleteBook(bookId);
+    });
+  }
+}
+
+// Function that deletes corresponding book
+function deleteBook(bookId) {
+  const bookIndex = myLibrary.findIndex((book) => book.id === bookId);
+  const deleteTr = document.querySelector(`[data-id="${bookId}"]`);
+  if (bookIndex !== -1) {
+    myLibrary.splice(bookIndex, 1);
+    deleteTr.remove();
+  }
+}
+
+function updateCounters() {}
 
 doneBtn.addEventListener("click", function () {
   addBookToLibrary();
