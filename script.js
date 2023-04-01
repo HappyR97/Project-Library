@@ -76,17 +76,8 @@ function deleteAll() {
       temp[i].remove();
     }
   }
-
-  // Reset everything
   myLibrary = [];
-  readBooks = 0;
-  readBooksEl.textContent = "0";
-
-  unreadBooks = 0;
-  unreadBooksEl.textContent = "0";
-
-  allBooks = 0;
-  allBooksEl.textContent = "0";
+  updateCounters();
 }
 
 // Events to open/close new book modal
@@ -235,6 +226,7 @@ function addTrashEvents() {
     trashButtons[i].addEventListener("click", function () {
       const bookId = this.closest("tr").getAttribute("data-id");
       deleteBook(bookId);
+      updateCounters();
     });
   }
 }
@@ -249,11 +241,34 @@ function deleteBook(bookId) {
   }
 }
 
-function updateCounters() {}
+// Function that updates book counters (total books, books read, books not read)
+function updateCounters() {
+  allBooks = myLibrary.length;
+  allBooksEl.textContent = allBooks;
+
+  readBooks = myLibrary.reduce((acc, book) => {
+    if (book.read === "yes") {
+      return acc + 1;
+    } else {
+      return acc;
+    }
+  }, 0);
+  readBooksEl.textContent = readBooks;
+
+  unreadBooks = myLibrary.reduce((acc, book) => {
+    if (book.read === "no") {
+      return acc + 1;
+    } else {
+      return acc;
+    }
+  }, 0);
+  unreadBooksEl.textContent = unreadBooks;
+}
 
 doneBtn.addEventListener("click", function () {
   addBookToLibrary();
   addRow();
+  updateCounters();
   displayBooks();
   closeBookModal();
 });
